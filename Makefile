@@ -1,5 +1,4 @@
-multi:
-	rm -rf build/multi
+multi: clean
 	python3 -m generator
 clean:
 	rm -rf build
