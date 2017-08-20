@@ -1,0 +1,8 @@
+# Local env
+.gradle
+.vscode
+
+# Generated
+/build
+__pycache__
+*.pyc

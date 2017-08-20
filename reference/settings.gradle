@@ -1,0 +1,16 @@
+include ':app'
+include ':jlib'
+include ':klib'
+include ':jalib'
+include ':kalib'
+
+rootProject.name = 'reference'
+// See https://github.com/gradle/gradle/blob/master/settings.gradle
+rootProject.children.each {project ->
+    String fileBaseName = project.name
+    String projectDirName = "projects/$fileBaseName"
+    project.projectDir = new File(settingsDir, projectDirName)
+    project.buildFileName = "${fileBaseName}.gradle"
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.isFile()
+}

@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+ext.deps = ['jlib', 'klib', 'jalib', 'kalib']
+
+android {
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
+
+    defaultConfig {
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        applicationId 'com.example'
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled multi_dex.toBoolean()
+    }
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount 4
+    }
+    sourceSets {
+        main {
+            if (single_project.toBoolean()) {
+                for (dep in deps) {
+                    java.srcDirs += ["../$dep/src/main/java"]
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    compile "com.android.support:appcompat-v7:$support_library_version"
+
+    if (!single_project.toBoolean()) {
+        for (dep in deps) {
+            compile project(":$dep")
+        }
+    }
+}
