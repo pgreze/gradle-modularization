@@ -34,15 +34,20 @@ class GradleProject:
 
 class GradleRootProject(GradleProject):
 
-    def __init__(self, project_id: str, projects=[]):
+    def __init__(self, project_id: str, projects=[], properties=[]):
         super().__init__(project_id, 0, 0)
         self.projects = projects
+        self.properties = properties
 
     def generate(self, parent: Path) -> str:
         project_path = super().generate(parent)
 
         with open(project_path / 'settings.gradle', mode='w') as f:
             f.write(self.settings())
+
+        if self.properties:
+            with open(project_path / 'gradle.properties', mode='w') as f:
+                f.write("\n".join(self.properties))
 
         return project_path
 
@@ -52,7 +57,7 @@ class GradleRootProject(GradleProject):
     def settings(self):
         return _settings % {
             'project_id': self.project_id,
-            'includes': '\n'.join("include ':%s'" % project for project in self.projects)
+            'includes': '\n'.join("include '%s'" % project for project in self.projects)
         }
 
 _settings = """\

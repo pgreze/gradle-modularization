@@ -41,6 +41,7 @@ android {
         targetSdkVersion target_sdk_version
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -52,6 +53,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:$support_library_version"
     compile "com.android.support:recyclerview-v7:$support_library_version"
     compile "com.android.support:support-annotations:$support_library_version"
+    compile 'com.android.support:multidex:1.0.1'
 %(dependencies)s
 }
 """
