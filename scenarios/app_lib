@@ -1,0 +1,21 @@
+assemble_app_lib {
+    versions = ["4.1"]
+    tasks = ["app:assembleDebug"]
+    gradle-args = ["--parallel"]
+    run-using = tooling-api
+    warm-ups = 1
+}
+incremental_app {
+    versions = ["4.1"]
+    tasks = ["app:assembleDebug"]
+    gradle-args = ["--parallel"]
+    warm-ups = 1
+    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
+}
+incremental_lib {
+    versions = ["4.1"]
+    tasks = ["app:assembleDebug"]
+    gradle-args = ["--parallel"]
+    warm-ups = 1
+    apply-abi-change-to = "projects/lib0/src/main/java/lib/lib0/Cls0.java"
+}

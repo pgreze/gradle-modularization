@@ -1,0 +1,20 @@
+assemble_sample {
+    versions = ["4.1"]
+    tasks = ["app:assembleDebug"]
+    gradle-args = ["--parallel"]
+    warm-ups = 1
+}
+incremental_sample_app {
+    versions = ["4.1"]
+    tasks = ["app:assembleDebug"]
+    gradle-args = ["--parallel"]
+    warm-ups = 1
+    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
+}
+incremental_sample_lib {
+    versions = ["4.1"]
+    tasks = ["app:assembleDebug"]
+    gradle-args = ["--parallel"]
+    warm-ups = 1
+    apply-abi-change-to = "projects/java/src/main/java/lib/java/Cls0.java"
+}
