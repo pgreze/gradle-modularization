@@ -17,7 +17,7 @@ def sample(path):
         ]),
     ]
     return (
-        generator.GradleRootProject('multi', projects=[p.project_id for p in projects]),
+        generator.GradleRootProject('sample', projects=[p.project_id for p in projects]),
         projects,
     )
 
