@@ -27,17 +27,34 @@ def single_app(path):
         [generator.AndroidProject('app', 10000, 1000000, library=False)],
     )
 
-def app_and_2libs(path):
+def app_2libs(path):
     return (
-        generator.GradleRootProject('app_2libs', projects=[
-            'app', 'lib1', 'lib2',
-        ], properties=multi_dex_properties),
-        [
+        generator.GradleRootProject('app_2libs',
+            projects=['app', 'lib1', 'lib2'],
+            properties=multi_dex_properties
+        ), [
             generator.AndroidProject('lib1', 333, 33333, library=True),
             generator.AndroidProject('lib2', 333, 33333, library=True),
-            generator.AndroidProject('app', 333, 33333, library=False, dependencies=[
-                'lib1', 'lib2',
-            ]),
+            generator.AndroidProject(
+                'app', 333, 33333, library=False,
+                dependencies=['lib1', 'lib2']
+            ),
+        ],
+    )
+
+def app_10libs(path):
+    return (
+        generator.GradleRootProject('app_10libs',
+            projects=['app'] + ['lib%s' % i for i in range(1, 10)],
+            properties=multi_dex_properties
+        ), [
+            generator.AndroidProject('lib%s' % i, 1000, 10000, library=True)
+            for i in range(1, 10)
+        ] + [
+            generator.AndroidProject(
+                'app', 1000, 10000, library=False,
+                dependencies=['lib%s' % i for i in range(1, 10)]
+            )
         ],
     )
 
@@ -46,7 +63,8 @@ if __name__ == '__main__':
     scenarios = [
         sample(path),
         single_app(path),
-        app_and_2libs(path),
+        app_2libs(path),
+        app_10libs(path),
     ]
 
     for root_project, sub_projects in scenarios:
