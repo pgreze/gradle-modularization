@@ -5,7 +5,7 @@ clean:
 generate: clean
 	python3 -m generator
 	./gen-scenarios.py
-benchmark: generate
+benchmark: generate gradle-profiler
 	./benchmark.sh sample sample
 	./benchmark.sh single_app single_app
 	./benchmark.sh app_2libs app_lib

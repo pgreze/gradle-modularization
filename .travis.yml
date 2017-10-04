@@ -10,5 +10,5 @@ env:
     - PROJECT=app_2libs SCENARIO=app_lib
     - PROJECT=app_10libs SCENARIO=app_lib
 script:
-  - make generate
+  - make generate gradle-profiler
   - ./benchmark.sh $PROJECT $SCENARIO
