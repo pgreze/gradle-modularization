@@ -27,7 +27,7 @@ incremental_app {%(common)s
     apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
 }
 incremental_lib {%(common)s
-    apply-abi-change-to = "projects/lib0/src/main/java/lib/lib0/Cls0.java"
+    apply-abi-change-to = "projects/lib1/src/main/java/lib/lib1/Cls0.java"
 }
 """ % locals())
 
