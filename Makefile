@@ -9,4 +9,4 @@ benchmark: generate
 gradle-profiler:
 	git submodule update --init --recursive
 	cd gradle-profiler && ./gradlew installDist
-.PHONY: clean, generate, benchmark
+.PHONY: clean, generate, benchmark, gradle-profiler
