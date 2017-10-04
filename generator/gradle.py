@@ -45,9 +45,8 @@ class GradleRootProject(GradleProject):
         with open(project_path / 'settings.gradle', mode='w') as f:
             f.write(self.settings())
 
-        if self.properties:
-            with open(project_path / 'gradle.properties', mode='w') as f:
-                f.write("\n".join(self.properties))
+        with open(project_path / 'gradle.properties', mode='w') as f:
+            f.write(_properties + "\n".join(self.properties))
 
         return project_path
 
@@ -77,13 +76,13 @@ rootProject.children.each {project ->
 
 _build = """\
 buildscript {
-    ext.kotlin_version = '1.1.4'
+    ext.android_gradle_plugin = project.getProperty("android.gradle_plugin")
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "com.android.tools.build:gradle:$android_gradle_plugin"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -94,10 +93,18 @@ allprojects {
     }
 }
 ext {
-    compile_sdk_version = 26
-    build_tools_version = '26.0.1'
-    min_sdk_version = 21
+    compile_sdk_version = Integer.valueOf(project.getProperty("android.compile_sdk_version"))
+    build_tools_version = project.getProperty("android.build_tools_version")
+    min_sdk_version = Integer.valueOf(project.getProperty("android.min_sdk_version"))
     target_sdk_version = compile_sdk_version
-    support_library_version = '26.0.1'
 }
+"""
+
+_properties = """\
+android.gradle_plugin = 2.3.3
+android.compile_sdk_version = 26
+android.build_tools_version = 26.0.1
+android.min_sdk_version = 21
+kotlin_version = 1.1.4
+support_library_version = 26.0.1
 """
