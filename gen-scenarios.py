@@ -9,7 +9,6 @@ common = """
     versions = ["%(gradle_version)s"]
     gradle-args = ["--parallel"]
     warm-ups = 1
-    cleanup-tasks = ["clean"]
     tasks = ["app:assembleDebug"]""" % locals()
 
 write("single_app", """\
