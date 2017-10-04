@@ -3,12 +3,12 @@ python: 3.6
 notifications:
   email: false
 sudo: false
-matrix:
-  include:
-    - env: PROJECT=sample SCENARIO=sample
-    - env: PROJECT=single_app SCENARIO=single_app
-    - env: PROJECT=app_2libs SCENARIO=app_lib
-    - env: PROJECT=app_10libs SCENARIO=app_lib
+env:
+  matrix:
+    - PROJECT=sample SCENARIO=sample
+    - PROJECT=single_app SCENARIO=single_app
+    - PROJECT=app_2libs SCENARIO=app_lib
+    - PROJECT=app_10libs SCENARIO=app_lib
 script:
   - make generate
   - ./benchmark.sh $PROJECT $SCENARIO
