@@ -14,10 +14,10 @@ class GradleProject:
         project_path = parent / self.project_id
 
         # Create project folder
-        os.makedirs(parent / self.project_id, exist_ok=False)
+        os.makedirs(str(parent / self.project_id), exist_ok=False)
 
         # Write gradle file
-        with open(project_path / 'build.gradle', mode='w') as f:
+        with open(str(project_path / 'build.gradle'), mode='w') as f:
             f.write(self.build_gradle_content())
 
         # Write sources
@@ -42,10 +42,10 @@ class GradleRootProject(GradleProject):
     def generate(self, parent: Path) -> str:
         project_path = super().generate(parent)
 
-        with open(project_path / 'settings.gradle', mode='w') as f:
+        with open(str(project_path / 'settings.gradle'), mode='w') as f:
             f.write(self.settings())
 
-        with open(project_path / 'gradle.properties', mode='w') as f:
+        with open(str(project_path / 'gradle.properties'), mode='w') as f:
             f.write(_properties + "\n".join(self.properties))
 
         return project_path

@@ -1,12 +1,6 @@
 notifications:
   email: false
 sudo: false
-addons:
-  apt:
-    sources:
-      - deadsnakes # source required so it finds the package definition below
-    packages:
-      - python3.5
 language: android
 android:
   components:
@@ -28,7 +22,5 @@ env:
     - PROJECT=app_2libs SCENARIO=app_lib
     - PROJECT=app_10libs SCENARIO=app_lib
 script:
-  - make gradle-profiler
-  - python3.5 -m generator
-  - python3.5 ./gen-scenarios.py
+  - make generator gradle-profiler
   - ./benchmark.sh $PROJECT $SCENARIO

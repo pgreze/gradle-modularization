@@ -13,10 +13,10 @@ class JavaProject(GradleProject):
 
     def write_sources(self, project_path: Path):
         src_output = project_path / ('src/main/java/lib/%s' % (self.project_id))
-        os.makedirs(src_output)
+        os.makedirs(str(src_output))
         for class_idx in range(self.class_count):
             content, filename = self.source_content(class_idx, int(self.method_count / self.class_count))
-            with open(src_output / filename, mode='w') as f:
+            with open(str(src_output / filename), mode='w') as f:
                 f.write(content)
 
     def source_content(self, class_idx, methods_per_class):

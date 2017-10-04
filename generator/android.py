@@ -24,7 +24,7 @@ class AndroidProject(JavaProject):
         }
 
     def manifest(self, project_path: Path):
-        with open(project_path / 'src/main/AndroidManifest.xml', mode='w') as f:
+        with open(str(project_path / 'src/main/AndroidManifest.xml'), mode='w') as f:
             manifest = _manifest_lib if self.library else _manifest_app
             f.write(manifest % {'package_name': self.package})
 
