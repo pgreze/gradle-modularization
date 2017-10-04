@@ -1,6 +1,5 @@
 from pathlib import Path
 from .java import JavaProject
-import ipdb
 
 _all_ = ('AndroidProject',)
 
