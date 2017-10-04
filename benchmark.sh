@@ -14,4 +14,7 @@ function benchmark_scenario {
 PROJECT_NAME=$1
 SCENARIO_NAME=$2
 
-benchmark_scenario build/$PROJECT_NAME --scenario-file build/$SCENARIO_NAME.scenario
+benchmark_scenario build/$PROJECT_NAME --scenario-file build/$SCENARIO_NAME.scenario || echo "Benchmark failed with: $?"
+
+cat build/$PROJECT_NAME/benchmark/benchmark.csv
+# benchmark/profile.log is also available but really verbose
