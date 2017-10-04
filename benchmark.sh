@@ -11,7 +11,7 @@ function benchmark_scenario {
 
 # No apply-abi-change for Kotlin now
 
-benchmark_scenario build/sample --scenario-file scenarios/sample
-benchmark_scenario build/single_app --scenario-file scenarios/single_app
-benchmark_scenario build/app_2libs --scenario-file scenarios/app_lib
-benchmark_scenario build/app_10libs --scenario-file scenarios/app_lib
+PROJECT_NAME=$1
+SCENARIO_NAME=$2
+
+benchmark_scenario build/$PROJECT_NAME --scenario-file build/$SCENARIO_NAME.scenario
