@@ -1,4 +1,5 @@
-#!/usr/bin/env bash -x
+#!/usr/bin/env bash
+set -x
 
 gprofiler="gradle-profiler/build/install/gradle-profiler/bin/gradle-profiler"
 function benchmark {
