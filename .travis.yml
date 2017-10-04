@@ -1,6 +1,3 @@
-notifications:
-  email: false
-sudo: false
 language: android
 android:
   components:
@@ -22,5 +19,10 @@ env:
     - PROJECT=app_2libs SCENARIO=app_lib
     - PROJECT=app_10libs SCENARIO=app_lib
 script:
-  - make generator gradle-profiler
+  - make gradle-profiler
+  - python3 -m generator
+  - python3 ./gen-scenarios.py
   - ./benchmark.sh $PROJECT $SCENARIO
+sudo: false
+notifications:
+  email: false
