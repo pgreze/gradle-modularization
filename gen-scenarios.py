@@ -41,9 +41,9 @@ incremental_single_app {%(common)s
 }
 """ % locals())
 
-# MULTI_2
+# MULTI_3
 
-write("multi_2", """\
+write("multi_3", """\
 assemble_app_lib {%(common)s
 }
 incremental_app {%(common)s

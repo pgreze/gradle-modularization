@@ -17,7 +17,7 @@ env:
   matrix:
     - PROJECT=sample SCENARIO=sample
     - PROJECT=single_app SCENARIO=single_app
-    - PROJECT=multi_2 SCENARIO=multi_2
+    - PROJECT=multi_3 SCENARIO=multi_3
     - PROJECT=multi_10 SCENARIO=multi_10
     - PROJECT=multi_100 SCENARIO=multi_100
 script:
