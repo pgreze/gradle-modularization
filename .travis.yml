@@ -21,9 +21,7 @@ env:
     - PROJECT=multi_10 SCENARIO=multi_10
     - PROJECT=multi_100 SCENARIO=multi_100
 script:
-  - make gradle-profiler
-  - python3 -m generator
-  - python3 ./gen-scenarios.py
+  - make generate gradle-profiler
   - ./benchmark.sh $PROJECT $SCENARIO
 sudo: false
 notifications:
