@@ -3,8 +3,8 @@ clean:
 	rm -rf build
 	rm -rf generator/__pycache__
 generate: clean
-	python3 -m generator
-	./gen-scenarios.py
+	python3 ./gen-projects.py
+	python3 ./gen-scenarios.py
 benchmark: generate gradle-profiler
 	./benchmark.sh sample sample
 	./benchmark.sh single_app single_app

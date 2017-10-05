@@ -6,6 +6,47 @@ multi_dex_properties = [
     "org.gradle.parallel=true",
 ]
 
+multi_10_dependencies = (
+    (3, 4), # 1
+    (5, 6),
+    (7,), # 3
+    (7,),
+    (8,), # 5
+    (8,),
+    (9,), # 7
+    (9,),
+    (), # 9
+)
+def multi_100_dependencies(n):
+    '''Resolve dependencies for the Nth lib in multi_100 project.
+
+    Example: n=11 is in 1th group. It's depending on group 3 and 4
+    In other words, 23-33 + 34-44 = 23-44 libraries.
+    '''
+    group = n // 10
+    if (n % 10) > group: # For 12,13... or 89
+        group += 1
+    deps = []
+
+    start = (group - 1) * 10 + group
+    layers = (
+        (start, start+1),
+        (start+2, start+3, start+4, start+5),
+        (start+6, start+7, start+8),
+        (start+9, start+10),
+    )
+    for layer in layers:
+        if n < layer[0]:
+            deps += layer
+
+    for dep_group in multi_10_dependencies[group - 1]:
+        deps += [i for i in range(
+            (dep_group - 1) * 10 + dep_group,
+            dep_group * 10 + dep_group + 1
+        )]
+
+    return deps
+
 def sample(path):
     projects = [
         generator.JavaProject('java', 2, 10),
@@ -27,9 +68,9 @@ def single_app(path):
         [generator.AndroidProject('app', 10000, 1000000, library=False)],
     )
 
-def app_2libs(path):
+def multi_3(path):
     return (
-        generator.GradleRootProject('app_2libs',
+        generator.GradleRootProject('multi_3',
             projects=['app', 'lib1', 'lib2'],
             properties=multi_dex_properties
         ), [
@@ -42,13 +83,14 @@ def app_2libs(path):
         ],
     )
 
-def app_10libs(path):
+def multi_10(path):
     return (
-        generator.GradleRootProject('app_10libs',
+        generator.GradleRootProject('multi_10',
             projects=['app'] + ['lib%s' % i for i in range(1, 10)],
             properties=multi_dex_properties
         ), [
-            generator.AndroidProject('lib%s' % i, 1000, 10000, library=True)
+            generator.AndroidProject('lib%s' % i, 1000, 10000, library=True,
+                dependencies=['lib%s' % dep for dep in multi_10_dependencies[i-1]])
             for i in range(1, 10)
         ] + [
             generator.AndroidProject(
@@ -58,13 +100,31 @@ def app_10libs(path):
         ],
     )
 
+def multi_100(path):
+    return (
+        generator.GradleRootProject('multi_100',
+            projects=['app'] + ['lib%s' % i for i in range(1, 100)],
+            properties=multi_dex_properties
+        ), [
+            generator.AndroidProject('lib%s' % i, 100, 1000, library=True,
+                dependencies=['lib%s' % dep for dep in multi_100_dependencies(i)])
+            for i in range(1, 100)
+        ] + [
+            generator.AndroidProject(
+                'app', 100, 1000, library=False,
+                dependencies=['lib%s' % i for i in range(1, 100)]
+            )
+        ],
+    )
+
 if __name__ == '__main__':
     path = Path('build/')
     scenarios = [
         sample(path),
         single_app(path),
-        app_2libs(path),
-        app_10libs(path),
+        multi_3(path),
+        multi_10(path),
+        multi_100(path),
     ]
 
     for root_project, sub_projects in scenarios:
