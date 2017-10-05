@@ -11,24 +11,7 @@ common = """
     warm-ups = 1
     tasks = ["app:assembleDebug"]""" % locals()
 
-write("single_app", """\
-assemble_single_app {%(common)s
-}
-incremental_single_app {%(common)s
-    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls9000.java"
-}
-""" % locals())
-
-write("app_lib", """\
-assemble_app_lib {%(common)s
-}
-incremental_app {%(common)s
-    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
-}
-incremental_lib {%(common)s
-    apply-abi-change-to = "projects/lib1/src/main/java/lib/lib1/Cls0.java"
-}
-""" % locals())
+# SAMPLE
 
 write("sample", ''.join("""\
 assemble_sample_%(suffix)s {%(common)s
@@ -47,3 +30,26 @@ incremental_sample_lib_%(suffix)s {%(common)s
     'suffix': suffix,
     'agp': agp
 } for suffix, agp in [('233', '2.3.3'), ('agp_beta', '3.0.0-beta4')]))
+
+# SINGLE_APP
+
+write("single_app", """\
+assemble_single_app {%(common)s
+}
+incremental_single_app {%(common)s
+    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls9000.java"
+}
+""" % locals())
+
+# APP_LIB
+
+write("app_lib", """\
+assemble_app_lib {%(common)s
+}
+incremental_app {%(common)s
+    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
+}
+incremental_lib {%(common)s
+    apply-abi-change-to = "projects/lib1/src/main/java/lib/lib1/Cls0.java"
+}
+""" % locals())
