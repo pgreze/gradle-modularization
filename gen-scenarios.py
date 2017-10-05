@@ -41,15 +41,59 @@ incremental_single_app {%(common)s
 }
 """ % locals())
 
-# APP_LIB
+# MULTI_2
 
-write("app_lib", """\
+write("multi_2", """\
 assemble_app_lib {%(common)s
 }
 incremental_app {%(common)s
     apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
 }
-incremental_lib {%(common)s
+incremental_lib1 {%(common)s
     apply-abi-change-to = "projects/lib1/src/main/java/lib/lib1/Cls0.java"
+}
+""" % locals())
+
+# MULTI_10
+
+write("multi_10", """\
+assemble_app_lib {%(common)s
+}
+incremental_app {%(common)s
+    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
+}
+incremental_lib1 {%(common)s
+    apply-abi-change-to = "projects/lib1/src/main/java/lib/lib1/Cls0.java"
+}
+incremental_lib3 {%(common)s
+    apply-abi-change-to = "projects/lib3/src/main/java/lib/lib3/Cls0.java"
+}
+incremental_lib7 {%(common)s
+    apply-abi-change-to = "projects/lib7/src/main/java/lib/lib7/Cls0.java"
+}
+incremental_lib9 {%(common)s
+    apply-abi-change-to = "projects/lib9/src/main/java/lib/lib9/Cls0.java"
+}
+""" % locals())
+
+# MULTI_100
+
+write("multi_100", """\
+assemble_app_lib {%(common)s
+}
+incremental_app {%(common)s
+    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
+}
+incremental_lib19 {%(common)s
+    apply-abi-change-to = "projects/lib19/src/main/java/lib/lib19/Cls0.java"
+}
+incremental_lib39 {%(common)s
+    apply-abi-change-to = "projects/lib39/src/main/java/lib/lib39/Cls0.java"
+}
+incremental_lib79 {%(common)s
+    apply-abi-change-to = "projects/lib79/src/main/java/lib/lib79/Cls0.java"
+}
+incremental_lib99 {%(common)s
+    apply-abi-change-to = "projects/lib99/src/main/java/lib/lib99/Cls0.java"
 }
 """ % locals())

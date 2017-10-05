@@ -17,8 +17,9 @@ env:
   matrix:
     - PROJECT=sample SCENARIO=sample
     - PROJECT=single_app SCENARIO=single_app
-    - PROJECT=app_2libs SCENARIO=app_lib
-    - PROJECT=app_10libs SCENARIO=app_lib
+    - PROJECT=multi_2 SCENARIO=multi_2
+    - PROJECT=multi_10 SCENARIO=multi_10
+    - PROJECT=multi_100 SCENARIO=multi_100
 script:
   - make gradle-profiler
   - python3 -m generator
