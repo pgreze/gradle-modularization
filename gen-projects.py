@@ -45,7 +45,7 @@ def multi_dependencies(current_project, project_count):
 
     return [i for i in deps if i < project_count]
 
-CLASSES = 100
+CLASSES = 1000
 METHODS = CLASSES * 100
 
 def sample(path):
