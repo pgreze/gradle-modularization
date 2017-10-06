@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 from pathlib import Path
 import generator
 
@@ -128,6 +129,10 @@ if __name__ == '__main__':
         multi_10(path),
         multi_100(path),
     ]
+
+    if len(sys.argv) > 1:
+        # Filter names provided in args
+        scenarios = [s for s in scenarios if s[0].project_id in sys.argv[1:]]
 
     for root_project, sub_projects in scenarios:
         multi_project_path = root_project.generate(path)
