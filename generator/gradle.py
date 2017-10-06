@@ -7,8 +7,8 @@ class GradleProject:
 
     def __init__(self, project_id: str, class_count: int, method_count: int):
         self.project_id = project_id
-        self.class_count = class_count
-        self.method_count = method_count
+        self.class_count = int(class_count)
+        self.method_count = int(method_count)
 
     def generate(self, parent: Path) -> str:
         project_path = parent / self.project_id
