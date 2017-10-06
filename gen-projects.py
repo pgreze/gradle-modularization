@@ -133,7 +133,3 @@ if __name__ == '__main__':
         multi_project_path = root_project.generate(path)
         for project in sub_projects:
             project.generate(multi_project_path / 'projects/')
-
-    # Configure Composite build
-    #with open(path / 'settings.gradle', mode='w') as f:
-    #    f.write("\n".join("includeBuild '%s'" % p.project_id for p, _ in scenarios))
