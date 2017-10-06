@@ -1,5 +1,7 @@
 # gradle-modularization
 
+[![Build Status](https://travis-ci.org/pgreze/gradle-modularization.svg?branch=master)](https://travis-ci.org/pgreze/gradle-modularization)
+
 Benchmarks for different Gradle modularization strategies.
 
 # Projects dependencies
