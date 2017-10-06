@@ -67,7 +67,7 @@ def sample(path):
 def single_app(path):
     return (
         generator.GradleRootProject('single_app', projects=['app'], properties=multi_dex_properties),
-        [generator.AndroidProject('app', 10000, 1000000, library=False)],
+        [generator.AndroidProject('app', 10000, 100000, library=False)],
     )
 
 def multi_3(path):
@@ -76,10 +76,10 @@ def multi_3(path):
             projects=['app', 'lib1', 'lib2'],
             properties=multi_dex_properties
         ), [
-            generator.AndroidProject('lib1', 333, 33333, library=True),
-            generator.AndroidProject('lib2', 333, 33333, library=True),
+            generator.AndroidProject('lib1', 3333, 33333, library=True),
+            generator.AndroidProject('lib2', 3333, 33333, library=True),
             generator.AndroidProject(
-                'app', 333, 33333, library=False,
+                'app', 3333, 33333, library=False,
                 dependencies=['lib1', 'lib2']
             ),
         ],
