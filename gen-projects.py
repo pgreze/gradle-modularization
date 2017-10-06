@@ -95,8 +95,9 @@ if __name__ == '__main__':
         sample(path),
         single_app(path),
         multi(path, 3),
+        multi(path, 5),
+        multi(path, 8),
         multi(path, 10),
-        multi(path, 100),
     ]
 
     if len(sys.argv) > 1:

@@ -48,6 +48,10 @@ inc_lib%(tgt)s {%(common)s
 """ % {'tgt': tgt, 'common': common} for tgt in inc_targets))
 
 multi("single_app", [])
+
 multi("multi_3", [1])
+multi("multi_5", [1, 3])
+multi("multi_8", [1, 3, 7])
 multi("multi_10", [1, 3, 7, 9])
+
 multi("multi_100", [19, 39, 79, 99])

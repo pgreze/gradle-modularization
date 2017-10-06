@@ -15,14 +15,17 @@ cache:
     - $HOME/.gradle/wrapper/
 env:
   matrix:
-    - PROJECT=sample SCENARIO=sample
-    - PROJECT=single_app SCENARIO=single_app
-    - PROJECT=multi_3 SCENARIO=multi_3
-    - PROJECT=multi_10 SCENARIO=multi_10
-    - PROJECT=multi_100 SCENARIO=multi_100
+    - PROJECT=sample
+    - PROJECT=single_app
+    - PROJECT=multi_3
+    - PROJECT=multi_5
+    - PROJECT=multi_8
+    - PROJECT=multi_10
 script:
-  - make generate gradle-profiler
-  - ./benchmark.sh $PROJECT $SCENARIO
+  - make gradle-profiler
+  - python3 ./gen-projects.py $PROJECT
+  - python3 ./gen-scenarios.py
+  - ./benchmark.sh $PROJECT $PROJECT
 sudo: false
 notifications:
   email: false
