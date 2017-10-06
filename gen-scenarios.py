@@ -31,69 +31,23 @@ inc_sample_lib_%(suffix)s {%(common)s
     'agp': agp
 } for suffix, agp in [('233', '2.3.3'), ('agp_beta', '3.0.0-beta4')]))
 
-# SINGLE_APP
+# Projects number benchs
 
-write("single_app", """\
-build {%(common)s
-}
-inc {%(common)s
-    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls9000.java"
-}
-""" % locals())
-
-# MULTI_3
-
-write("multi_3", """\
+def multi(name, inc_targets):
+    write(name, ("""\
 build {%(common)s
 }
 inc_app {%(common)s
     apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
 }
-inc_lib {%(common)s
-    apply-abi-change-to = "projects/lib1/src/main/java/lib/lib1/Cls0.java"
+""" % globals()) + "".join(
+"""\
+inc_lib%(tgt)s {%(common)s
+    apply-abi-change-to = "projects/lib%(tgt)s/src/main/java/lib/lib%(tgt)s/Cls0.java"
 }
-""" % locals())
+""" % {'tgt': tgt, 'common': common} for tgt in inc_targets))
 
-# MULTI_10
-
-write("multi_10", """\
-build {%(common)s
-}
-inc_app {%(common)s
-    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
-}
-inc_lib1 {%(common)s
-    apply-abi-change-to = "projects/lib1/src/main/java/lib/lib1/Cls0.java"
-}
-inc_lib3 {%(common)s
-    apply-abi-change-to = "projects/lib3/src/main/java/lib/lib3/Cls0.java"
-}
-inc_lib7 {%(common)s
-    apply-abi-change-to = "projects/lib7/src/main/java/lib/lib7/Cls0.java"
-}
-inc_lib9 {%(common)s
-    apply-abi-change-to = "projects/lib9/src/main/java/lib/lib9/Cls0.java"
-}
-""" % locals())
-
-# MULTI_100
-
-write("multi_100", """\
-build {%(common)s
-}
-inc_app {%(common)s
-    apply-abi-change-to = "projects/app/src/main/java/lib/app/Cls0.java"
-}
-inc_lib19 {%(common)s
-    apply-abi-change-to = "projects/lib19/src/main/java/lib/lib19/Cls0.java"
-}
-inc_lib39 {%(common)s
-    apply-abi-change-to = "projects/lib39/src/main/java/lib/lib39/Cls0.java"
-}
-inc_lib79 {%(common)s
-    apply-abi-change-to = "projects/lib79/src/main/java/lib/lib79/Cls0.java"
-}
-inc_lib99 {%(common)s
-    apply-abi-change-to = "projects/lib99/src/main/java/lib/lib99/Cls0.java"
-}
-""" % locals())
+multi("single_app", [])
+multi("multi_3", [1])
+multi("multi_10", [1, 3, 7, 9])
+multi("multi_100", [19, 39, 79, 99])
