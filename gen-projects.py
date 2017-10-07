@@ -38,7 +38,7 @@ def multi_dependencies(current_project, project_count):
     start = (group - 1) * 10 + group
     idx = current_project - start
     if idx < len(multi_10_dependencies):
-        deps += [i for i in multi_10_dependencies[idx]]
+        deps += [start + i for i in multi_10_dependencies[idx]]
 
     for dep_group in multi_10_dependencies[group - 1]:
         deps += [i for i in range(
