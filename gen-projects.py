@@ -9,7 +9,7 @@ multi_dex_properties = [
     "org.gradle.parallel=true",
 ]
 
-CLASSES = 1000
+CLASSES = 10000
 METHODS = CLASSES * 20
 
 multi_10_dependencies = (
@@ -98,6 +98,10 @@ if __name__ == '__main__':
         multi(path, 5),
         multi(path, 8),
         multi(path, 10),
+        multi(path, 30),
+        multi(path, 50),
+        multi(path, 80),
+        multi(path, 100),
     ]
 
     if len(sys.argv) > 1:

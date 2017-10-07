@@ -17,10 +17,11 @@ env:
   matrix:
     - PROJECT=sample
     - PROJECT=single_app
-    - PROJECT=multi_3
-    - PROJECT=multi_5
-    - PROJECT=multi_8
     - PROJECT=multi_10
+    - PROJECT=multi_30
+    - PROJECT=multi_50
+    - PROJECT=multi_80
+    - PROJECT=multi_100
 script:
   - make gradle-profiler
   - python3 ./gen-projects.py $PROJECT
