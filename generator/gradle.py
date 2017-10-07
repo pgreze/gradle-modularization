@@ -108,6 +108,9 @@ android.min_sdk_version = 21
 kotlin_version = 1.1.4
 support_library_version = 26.0.1
 
+# See https://developer.android.com/studio/build/optimize-your-build.html#increase_gradle_heap
+org.gradle.jvmargs = -Xmx2048m
+
 # Disable aapt2. See http://pgreze.github.io/2017/08/02/gradle-tips-twitter/
 android.enableNewResourceProcessing=false
 android.enableAapt2=false
