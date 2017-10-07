@@ -9,7 +9,7 @@ multi_dex_properties = [
     "org.gradle.parallel=true",
 ]
 
-CLASSES = 1000
+CLASSES = 10000
 METHODS = CLASSES * 20
 
 multi_10_dependencies = (
