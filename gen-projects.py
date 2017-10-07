@@ -9,6 +9,9 @@ multi_dex_properties = [
     "org.gradle.parallel=true",
 ]
 
+CLASSES = 1000
+METHODS = CLASSES * 20
+
 multi_10_dependencies = (
     (3, 5), # 1
     (4, 6),
@@ -44,9 +47,6 @@ def multi_dependencies(current_project, project_count):
         )]
 
     return [i for i in deps if i < project_count]
-
-CLASSES = 1000
-METHODS = CLASSES * 100
 
 def sample(path):
     projects = [
