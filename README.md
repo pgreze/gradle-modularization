@@ -32,3 +32,19 @@ For multi_100:
 We're applying the same split than multi_10 but for each 11 projects.
 
 Our incremental targets: 19, 39, 79, 99
+
+# References
+
+Sample apps:
+- https://github.com/android/sunflower
+- https://github.com/android/plaid
+- https://github.com/chrisbanes/tivi
+- https://github.com/google/iosched
+
+Code generation:
+- https://github.com/android/android-studio-poet
+- https://github.com/android/project-replicator
+
+Validate your hypothesis with gradle-profiler:
+- https://speakerdeck.com/ubiratansoares/experiments-for-your-android-builds-driven-by-gradle-profiler
+- https://www.youtube.com/watch?v=-mraauD2KxM (🇵🇹)
